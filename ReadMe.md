@@ -23,7 +23,7 @@ cd fileserver
 wgo run main.go
 ```
 
-### Open test page
+### Upload test
 
 Start a simple web server on port 3000, then navigate to:
 
@@ -31,7 +31,9 @@ Start a simple web server on port 3000, then navigate to:
 http://localhost:3000/frontend/fileupload.html
 ```
 
+### Fileserver test
 
+Open a browser to `localhost:8080/` to see the `tempFiles` content list
 
 ### References
 

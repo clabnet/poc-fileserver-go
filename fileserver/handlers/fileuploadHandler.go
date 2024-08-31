@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"file-upload-go/services"
+	"fileserver/services"
 	"fmt"
 	"net/http"
 )

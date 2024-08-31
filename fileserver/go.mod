@@ -1,4 +1,4 @@
-module file-upload-go
+module fileserver
 
 go 1.21.6
 

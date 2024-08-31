@@ -1,7 +1,7 @@
 package domain
 
 import (
-	"file-upload-go/common"
+	"fileserver/common"
 	"fmt"
 	"io"
 	"mime/multipart"

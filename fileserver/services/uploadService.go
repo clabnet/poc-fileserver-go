@@ -1,7 +1,7 @@
 package services
 
 import (
-	"file-upload-go/domain"
+	"fileserver/domain"
 	"mime/multipart"
 )
 

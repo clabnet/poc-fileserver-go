@@ -8,21 +8,13 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	// "github.com/gorilla/mux"
 )
 
-func dummyFunc(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "It work. This is a dummy function.")
-}
-
 func StartApp() {
-	// 1. Create the router
-	// router := mux.NewRouter()
 	port := 8080
 
-
 	// ============================================================================================
-	// this is the part related to static file serve. It should be refactor to a separate file ...
+	// This is the part related to static file serve. It should be refactor to a separate file ...
 	// https://medium.com/the-bug-shots/create-a-simple-fileserver-in-golang-9cd54453d373
 	directoryPath := "../tempFiles"
 
@@ -38,28 +30,26 @@ func StartApp() {
 
 	// Create a new HTTP server and handle requests
 	http.Handle("/", fileServer)
+
 	// ============================================================================================
-
-
+	// This is the part related to upload files. It is already refactorized code.
 	handler := handlers.NewUploadHandler(
 		services.NewLocalUploadService(
 			domain.NewLocalUpload(),
 		))
 
-	// 2. Add functions to router
-	http.HandleFunc("/dummy", dummyFunc)
+	http.HandleFunc("/health", dummyFunc)
 	http.HandleFunc("/upload", handler.FileUpload)
-	// router.HandleFunc("/", Hello)
-	// http.Handle("/", router)
 
-
-	// 3. Start the server
+	// ============================================================================================
+	// Start the server
 	fmt.Printf("Server started at http://localhost:%d\n", port)
 	fmt.Println("Test upload at http://localhost:3000/frontend/fileupload.html")
 	err = http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
 	log.Fatal(err)
 }
 
-func Hello(w http.ResponseWriter, req *http.Request) {
-	fmt.Fprintln(w, "Hello to Golang world !")
+func dummyFunc(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hello, welcome to minimalist FileServer Go.")
 }
+

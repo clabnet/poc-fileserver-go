@@ -1,10 +1,8 @@
-# UPLOAD with GoLang
+# Fileserver with GoLang
+
+This application create a minimalist **fileserver** to serve static files, and also permit the **upload** files onto the `tempFiles` folder.
 
 ### Setup environment
-
-```
-go get -u github.com/gorilla/mux
-```
 
 ##### Install LiveReload
 
@@ -23,20 +21,25 @@ cd fileserver
 wgo run main.go
 ```
 
-### Upload test
+### Test upload
 
-Start a simple web server on port 3000, then navigate to:
+Start a [simple web server](https://www.npmjs.com/package/http-server) on port 3000, then navigate to:
 
 ```
 http://localhost:3000/frontend/fileupload.html
 ```
 
-### Fileserver test
+### Test fileserver
 
-Open a browser to `localhost:8080/` to see the `tempFiles` content list
+Open a browser to `http://localhost:8080/` to see the `tempFiles` content list
+
+---
 
 ### References
 
-[Write a Lightweight API and Static File Server in Go](https://medium.com/swlh/write-a-lightweight-api-and-static-file-server-in-go-5e5b208ccdaf)
+- [Write a Lightweight API and Static File Server in Go](https://medium.com/swlh/write-a-lightweight-api-and-static-file-server-in-go-5e5b208ccdaf)
+- [Building a Multipart-Form Upload Service in Go](https://medium.com/@mohitdubey_83162/building-a-multipart-form-upload-service-in-go-a-practical-guide-4f69069bc912)
 
-- https://medium.com/@mohitdubey_83162/building-a-multipart-form-upload-service-in-go-a-practical-guide-4f69069bc912
+---
+
+Claudio Barca 31/8/2024

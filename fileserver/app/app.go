@@ -11,7 +11,7 @@ import (
 )
 
 func StartApp() {
-	port := 8080
+	port := 8090
 
 	// ============================================================================================
 	// This is the part related to static file serve. It should be refactor to a separate file ...

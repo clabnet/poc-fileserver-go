@@ -50,7 +50,7 @@ func (lu LocalUpload) SaveFile(file multipart.File, handler *multipart.FileHeade
 	}
 
 	tempFile.Write(filebytes)
-	return "Successfully uploaded " + handler.Filename + "\n" , nil
+	return "Successfully uploaded " + handler.Filename , nil
 }
 
 func NewLocalUpload() LocalUpload {

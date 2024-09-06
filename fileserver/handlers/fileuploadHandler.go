@@ -20,9 +20,11 @@ func (uh UploadHandler) FileUpload(w http.ResponseWriter, r *http.Request) {
 	// Get the file from the request
 	file, handler, err := r.FormFile("file")
 	if err != nil {
-		errStr := fmt.Sprintf("Error in FileUpload.\n %s\n", err)
-		fmt.Println(errStr)
-		fmt.Fprintf(w, errStr)
+		// Note for Sotirios:
+		// I didn't succeed to avoid the error "request Content-Type isn't multipart/form-data" using Angular client,
+		// but it work well at same time.
+		// errStr := fmt.Sprintf("Error in FileUpload.\n %s\n", err)
+		// fmt.Println(errStr)
 		return
 	}
 	defer file.Close()

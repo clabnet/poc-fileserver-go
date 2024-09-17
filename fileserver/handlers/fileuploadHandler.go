@@ -3,7 +3,7 @@ package handlers
 import (
 	"log"
 	"fileserver/services"
-	"fmt"
+	// "fmt"
 	"net/http"
 	"encoding/json"
 )

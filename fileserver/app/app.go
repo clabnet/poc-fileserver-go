@@ -1,11 +1,11 @@
 package app
 
 import (
-	"log"
 	"fileserver/domain"
 	"fileserver/handlers"
 	"fileserver/services"
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 )
@@ -28,10 +28,7 @@ func StartApp() {
 	// Create a file server handler to serve the directory's contents
 	fileServer := http.FileServer(http.Dir(directoryPath))
 
-	// Create a new HTTP server and handle requests
-	// http.Handle("/", fileServer)
-
-	// Apply CORS to the file server
+	// Create a new HTTP server and handle requests with CORS
 	http.Handle("/", corsMiddleware(fileServer))
 
 	// ============================================================================================
@@ -43,19 +40,15 @@ func StartApp() {
 
 	http.HandleFunc("/health", dummyFunc)
 
-	// http.HandleFunc("/upload", handler.FileUpload)
 	http.HandleFunc("/upload", func(w http.ResponseWriter, r *http.Request) {
 		enableCors(&w)
-		// if r.Method == http.MethodOptions {
-		// 	return // If it's an OPTIONS request, we just return after setting CORS headers
-		// }
 		handler.FileUpload(w, r)
 	})
 
 	// ============================================================================================
 	// Start the server
 	fmt.Printf("\nServer started at http://localhost:%d\n", port)
-	fmt.Println("Test upload at http://localhost:3000/frontend/fileupload.html")
+	fmt.Println("Try the upload at http://localhost:3000/frontend/fileupload.html")
 	err = http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
 	log.Fatal(err)
 }
@@ -74,11 +67,6 @@ func enableCors(w *http.ResponseWriter) {
 func corsMiddleware(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		enableCors(&w)
-		// if r.Method == http.MethodOptions {
-		// 	// Handle preflight requests by returning after setting CORS headers
-		// 	w.WriteHeader(http.StatusNoContent)
-		// 	return
-		// }
 		h.ServeHTTP(w, r)
 	})
 }

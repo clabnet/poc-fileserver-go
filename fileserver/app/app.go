@@ -18,11 +18,12 @@ func StartApp() {
 	// https://medium.com/the-bug-shots/create-a-simple-fileserver-in-golang-9cd54453d373
 	directoryPath := "../tempFiles"
 
-	// Check if the directory exists
-	_, err := os.Stat(directoryPath)
-	if os.IsNotExist(err) {
-		fmt.Printf("Directory '%s' not found.\n", directoryPath)
-		return
+	// Create the directory if not exists
+	if _, err := os.Stat(directoryPath); os.IsNotExist(err) {
+		err := os.Mkdir(directoryPath, os.ModePerm)
+		if err != nil {
+			log.Println(err)
+		}
 	}
 
 	// Create a file server handler to serve the directory's contents
@@ -49,7 +50,7 @@ func StartApp() {
 	// Start the server
 	fmt.Printf("\nServer started at http://localhost:%d\n", port)
 	fmt.Println("Try the upload at http://localhost:3000/frontend/fileupload.html")
-	err = http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
+	err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
 	log.Fatal(err)
 }
 

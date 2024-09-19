@@ -14,7 +14,7 @@ func StartApp() {
 	port := 8090
 
 	// ============================================================================================
-	// This is the part related to static file serve. It should be refactor to a separate file ...
+	// This is the part related to static file server.
 	// https://medium.com/the-bug-shots/create-a-simple-fileserver-in-golang-9cd54453d373
 	directoryPath := "../tempFiles"
 
@@ -33,7 +33,7 @@ func StartApp() {
 	http.Handle("/", corsMiddleware(fileServer))
 
 	// ============================================================================================
-	// This is the part related to upload files. It is already refactorized code.
+	// This is the part related to upload files.
 	handler := handlers.NewUploadHandler(
 		services.NewLocalUploadService(
 			domain.NewLocalUpload(),
